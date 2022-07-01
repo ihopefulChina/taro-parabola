@@ -22,8 +22,8 @@ import Parabola from 'taro-parabola'
 
 | 参数             | 描述                                                         | 类型                               | 必传 | 默认值 |
 | ---------------- | ------------------------------------------------------------ | ---------------------------------- | ---- | ------ |
-| `cardX`          | 购物车 所在坐标的x值                                          | number                        | 是   | `screenWidth`   |
-| `columns`        | 购物车 所在坐标的y值                                          | number                         | 是   | `screenHeight - 60`   |
+| `cartX`          | 购物车 所在坐标的x值                                          | number                        | 是   | `screenWidth`   |
+| `cartY`        | 购物车 所在坐标的y值                                          | number                         | 是   | `screenHeight - 60`   |
 | `onChange`       | 点击回调方法                                                 | Function                        | 否   | `() => void`  |
 | `parabolaStyle`   | 抛物线样式                                                  | React.CSSProperties                             | 否   |        |
 
@@ -36,17 +36,16 @@ import Taro from '@tarojs/taro'
 
 import { View } from '@tarojs/components'
 
+ const list = [1, 2, 3, 4, 5]
 const Component: FC = () => {
-  const list = [1, 2, 3, 4, 5]
-
-  const [cardInfo, setCardInfo] = useState({} as any)
+  const [cartInfo, setCartInfo] = useState({} as any)
 
   useEffect(() => {
     Taro.nextTick(() => {
       Taro.createSelectorQuery()
-        .select(`#card`)
+        .select(`#cart`)
         .boundingClientRect(info => {
-          setCardInfo(info)
+          setCartInfo(info)
         })
         .exec()
     })
@@ -56,8 +55,8 @@ const Component: FC = () => {
     <>
       {list.map(item => (
         <Parabola
-          cardX={cardInfo.left}
-          cardY={cardInfo.top}
+          cartX={cartInfo.left}
+          cartY={cartInfo.top}
           parabolaStyle={{ width: '15px', height: '15px', backgroundColor: '#333' }}
           onChange={() => {}}
           key={item}
@@ -65,7 +64,7 @@ const Component: FC = () => {
           {item}
         </Parabola>
       ))}
-      <View id="card">我是购物车</View>
+      <View id="cart">我是购物车</View>
     </>
   )
 }

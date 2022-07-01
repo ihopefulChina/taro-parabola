@@ -11,12 +11,12 @@ interface IProps {
    * 购物车 所在坐标的x值
    * @type {number}
    */
-  cardX: number
+  cartX: number
   /**
    * 购物车 所在坐标的Y值
    * @type {number}
    */
-  cardY: number
+  cartY: number
   /**
    * 点击回调方法
    * @type {Function}
@@ -33,7 +33,7 @@ interface IProps {
    */
   children: React.ReactNode
 }
-const Parabola = ({ cardX = screenWidth, cardY = screenHeight - 60, parabolaStyle, onChange, children }: IProps) => {
+const Parabola = ({ cartX = screenWidth, cartY = screenHeight - 60, parabolaStyle, onChange, children }: IProps) => {
   const [ballX, setBallX] = useState(0)
   const [ballY, setBallY] = useState(0)
   const [showBall, setShowBall] = useState(false)
@@ -77,8 +77,8 @@ const Parabola = ({ cardX = screenWidth, cardY = screenHeight - 60, parabolaStyl
   }
 
   const createAnimation = (baX, baY) => {
-    const aniX = flyX(cardX, baX) // 创建小球水平动画
-    const aniY = flyY(cardY, baY) // 创建小球垂直动画
+    const aniX = flyX(cartX, baX) // 创建小球水平动画
+    const aniY = flyY(cartY, baY) // 创建小球垂直动画
     setBallX(baX)
     setBallY(baY)
     setShowBall(true)
