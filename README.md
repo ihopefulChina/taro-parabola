@@ -17,7 +17,7 @@ npm install taro-parabola
 ```js
 import Parabola from 'taro-parabola'
 ```
-init
+
 # 参数说明
 
 | 参数             | 描述                                                         | 类型                               | 必传 | 默认值 |
